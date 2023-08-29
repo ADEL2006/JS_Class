@@ -10,6 +10,13 @@ let mul = (num1, num2) => {
     return num1 * num2;
 }
 
+let div = (num1, num2) => {
+    if(num2 == 0) {
+        return 0;
+    }
+    return num1 / num2;
+}
+
 function onLoadData(){
     const result1 = document.createElement('div');
     result1.textContent = 'add result: ' + add(10,20);
@@ -22,4 +29,10 @@ function onLoadData(){
     result = mul(10, 20);
     console.log('result: ', result);
 }
-window.onload = onLoadData();
+
+function run(){
+    console.log("타이머 완료");
+}
+console.log("시작");
+setTimeout(run,3000);
+console.log('끝');
