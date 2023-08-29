@@ -24,7 +24,7 @@ function onLoadData() {
     const result2 = document.createElement('div');
     result1.textContent = 'add result: ' + add(10, 20);
 
-    const resultData = document.getElementById('result');
+    const resultData = document.getElementById('results');
     resultData.appendChild(result1);
     resultData.appendChild(result2);
 }
