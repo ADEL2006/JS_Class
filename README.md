@@ -1,4 +1,3 @@
 # JS_Class
 
-school JS
-node js
+school node.JS
