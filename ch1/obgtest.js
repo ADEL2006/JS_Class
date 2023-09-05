@@ -1,15 +1,17 @@
-var sayNode = function() {
-    console.log("Node");
+function getData(callbackFunc) {
+    let result = true;
+    callback(result, callbackFunc);
 }
 
-var num = 1;
-
-var oldObject = {
-    sayJs : function() {
-        console.log("JS");
-    },
-    sayNode : sayNode,
+var callbackFunc1 = function(response, callbackFunc){
+    if (response==true) {
+        callbackFunc1(response);
+    } else{
+        console.log("callbackFunc1 Error")
+    }
 }
-oldObject.sayJs();
 
-console.log(oldObject);
+var callbackFunc2 = function(response){
+    console.log(response);
+}
+getData(callbackFunc1);
