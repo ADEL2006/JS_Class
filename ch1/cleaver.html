@@ -12,14 +12,15 @@
 
     <script>
         var box = document.querySelector(".box");
-        var toggle = document.querySelector(".toggle");
+        var toggleBtn = document.querySelector(".toggle");
 
-        var toggle = function(){
+        var toggle = (function(){
+            var isShow = false;
             return function(){
                 box.style.display = isShow ? "block" : "none";
                 isShow = !isShow;
             };
-        }
+        })();
         toggleBtn.onclick = toggle;
     </script>
 </body>
