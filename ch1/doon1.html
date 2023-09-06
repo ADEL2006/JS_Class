@@ -29,9 +29,9 @@
     </div> 
     <script>
         var loadFunc = () => {
-            const elems = document.getElementByClassName('red');
-            for (let i = 0; i < elems.length; i++) {
-                [...elems].forEach(el => el.className = 'blue')
+            const elem = document.querySelector('ul');
+            if(elem.hasChildNodes()) {
+                console.log(elem.children);
             }
         }
         window.onload = loadFunc;
