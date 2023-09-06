@@ -4,4 +4,11 @@ function outerFunc(){
     innerFunc;
 }
 
-outerFunc();
+var inner = outerFunc();
+inner();
+
+var a=10;
+function add() {
+    a=a+1;
+    console.log(a);
+}

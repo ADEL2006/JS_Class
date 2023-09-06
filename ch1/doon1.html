@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .red {color: #ff0000}
+        .blue {color: #0000ff}
+    </style>
+</head>
+<body>
+    <div>
+        <h1>Cities</h1>
+        <ul>
+            <li id="one" class="red">Seoul</li>
+            <li id="two" class="red">London</li>
+            <li id="three" class="red">NewYork</li>
+            <li id="four">Tokyo</li>
+        </ul>
+    </div>
+    <script>
+        var loadFunc = () => {
+            // const elem = document.getElementById('one');
+            // elem.className = "blue";
+            // const elem1 = document.getElementById('three');
+            // elem1.className = "blue";
+            const elem2 = document.querySelector('.red');
+            elem2.className = "blue";
+        }
+        window.onload = "blue";
+    </script>
+</body>
+</html>
