@@ -11,14 +11,35 @@ function findPrimes(start, range) {
                 break;
             }
         }
-        if(isPrime) { 
-            primes.push(i); 
+        if (isPrime) {
+            primes.push(i);
         }
         isPrime = true;
     }
 }
 
-console.time('prime');
-findPrimes(min, max);
-console.timeEnd('prime');
-console.log(primes.length);
+if (isMainThread) {
+    const threadCount = 8;
+    const threads = new Set();
+    const range = Math.ceil((max - min) / threadCount);
+    let start = min;
+    for (let i = 0; i < threadCount - 1; i++) {
+        const wstart = start;
+        threads.add(new Worker(__filename, {workerData: {start: wstart, range}}));
+        start += range;
+    }
+    threads.add(new Worker(__filename, {workerData: {start, range: range+((max - min + 1)%threadCount)}}));
+    for (let worker of threads) {
+        worker.on('err', (err) => {
+            console.log(err);
+        });
+        worker.on('exit', () => {
+            if(threads.size === 0) {
+                console.timeEnd('prime');
+            }
+        })
+    }
+}else {
+    findPrimes(workerData.start, workerData.range);
+    parentPort.postMessage(primes);
+}
