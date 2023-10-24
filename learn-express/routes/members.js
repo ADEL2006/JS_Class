@@ -10,4 +10,10 @@ const members = [
 router.get('/', (req, res)=>{
     res.json(members);
 });
+
+router.get('/:id', (req, res)=>{
+    
+})
+
+router.get('/')
 module.exports = router;

@@ -27,9 +27,18 @@ app.use('/members', memberRouter);
 
 // 404
 app.use((req, res, next)=>{
-    res.status(404).send('Not Found');
+    // res.status(404).send('Not Found');
+    const error = new Error(`${req.method} ${req.url} 라우터가 없습니다.`);
+    error.status = 404;
+    next(error);
 });
 
+app.use((err, req, res, next) => {
+    res.locals.message = err.message;
+    res.locals.error = err;
+    res.status(err.status || 500);
+    res.render('error');
+})
 app.listen(app.get('port'), ()=>{
     console.log(app.get('port'));
 });
