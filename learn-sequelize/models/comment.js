@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize');
 
-class Comment extends Sequelize.Model{
-    static init(sequelize) {
+class Comment extends Sequelize.Model {
+    static init(sequelize){
         return super.init(
             {
                 comment: {
@@ -16,21 +16,21 @@ class Comment extends Sequelize.Model{
             },
             {
                 sequelize,
-                timestemps: false,
-                underscore: false,
-                modelName: 'Comment',
-                tableName: 'comment',
+                timestamps: false,
+                underscored: false,
+                modelName:'Comment',
+                tableName:'comment',
                 paranoid: false,
-                charset: 'utf8',
-                collate:'utf8_unicode_ci',
+                charset:'utf8',
+                collate:'utf8_general_ci',
             }
-        )
+        );
     }
-    static associate(db) {
-        db.User.hasMany(db.User, {
-            foreignKey: 'commenter',
-            sourceKey: 'id',
+    static associate(db){
+        db.Comment.belongsTo(db.User,{
+            foreignKey:'commenter',
+            targetKey:'id',
         })
     }
 }
-model.exports = Comment;
+module.exports = Comment;

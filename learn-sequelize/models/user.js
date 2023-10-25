@@ -1,12 +1,12 @@
 const Sequelize = require('sequelize');
 class User extends Sequelize.Model {
-    static init(sequelize) {
-        return super.init(sequelize)(
+    static init(sequelize){
+        return super.init(
             {
-                name: {
-                    type: Sequelize.STRING(20),
-                    allowNull: false,
-                    unique: true,
+                name : {
+                   type: Sequelize.STRING(20),
+                   allowNull: false,
+                   unique: true, 
                 },
                 age: {
                     type: Sequelize.INTEGER.UNSIGNED,
@@ -28,20 +28,21 @@ class User extends Sequelize.Model {
             },
             {
                 sequelize,
-                timestemps: false,
-                underscore: false,
-                modelName: 'User',
-                tableName: 'users',
+                timestamps: false,
+                underscored: false,
+                modelName:'User',
+                tableName:'users',
                 paranoid: false,
-                charset: 'utf8',
-                collate:'utf8_unicode_ci',
+                charset:'utf8',
+                collate:'utf8_general_ci',
             }
         );
     }
-    static associate(db) {
-        db.User.hasMany(db.Comment, {
-            foreignKey: 'commenter',
-            sourceKey: 'id',
-        })
+    static associate(db){
+        db.User.hasMany(db.Comment,{
+            foreignKey:'commenter',
+            sourceKey:'id'
+        });
     }
-}
+};
+module.exports = User;
