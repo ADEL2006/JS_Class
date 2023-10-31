@@ -1,8 +1,11 @@
 const express = require('express');
 const indexRouter = require('./routes/index');
+const morgan = require('morgan');
 const studentRouter = require('./routes/student');
 const nunjucks = require('nunjucks');
+const dotenv = require('dotenv');
 
+dotenv.config();
 const app = express();
 app.set('port', process.env.PORT || 3000);
 
@@ -14,7 +17,7 @@ nunjucks.configure('views', {
     express: app,
     watch: true,
 });
-
+app.use(morgan('dev'));
 app.listen(app.get('port'), () => {
     console.log('Server Starting port: ', app.get('port'));
 })
