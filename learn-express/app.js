@@ -4,7 +4,7 @@ const path = require('path');
 const dotenv = require('dotenv');
 const nunjucks = require('nunjucks');
 
-const indexRouter = require('./routes');
+const indexRouter = require('./routes/index');
 const memberRouter = require('./routes/members');
 
 dotenv.config();

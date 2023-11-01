@@ -9,6 +9,7 @@ dotenv.config();
 const app = express();
 app.set('port', process.env.PORT || 3000);
 
+app.use(morgan('dev'));
 app.use('/', indexRouter); // 미들웨어 선언 
 app.use('/student', studentRouter);
 
@@ -17,7 +18,7 @@ nunjucks.configure('views', {
     express: app,
     watch: true,
 });
-app.use(morgan('dev'));
+
 app.listen(app.get('port'), () => {
     console.log('Server Starting port: ', app.get('port'));
-})
+});
