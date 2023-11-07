@@ -1,6 +1,7 @@
 const express = require('express');
 const User = require('../models/user')
-const Comment = require('../models/comment');
+const { Comment } = require('../models/comment');
+const { request } = require('express');
 const router = express.Router();
 
 router.route('/')
@@ -28,6 +29,28 @@ router.route('/')
             next(err);
         }
     })
+
+router.route('/:id')
+    .patch(async (req, res, next) => {
+        try {
+            const result = await Comment.update({
+                comment: req.body.comment,
+            },
+                {
+                    where: { id: req.params.id }
+                });
+                res.json(result);
+        }
+        catch (err) {
+            console.log(err);
+            next(err);
+        }
+    })
+    .delete((req, res, next) => {
+
+    })
+
+
 router.get('/:id/comments', async (req, res, next) => {
     try {
         const comments = await Comments.findAll({
