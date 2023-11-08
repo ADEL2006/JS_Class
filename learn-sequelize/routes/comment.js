@@ -30,26 +30,6 @@ router.route('/')
         }
     })
 
-router.route('/:id')
-    .patch(async (req, res, next) => {
-        try {
-            const result = await Comment.update({
-                comment: req.body.comment,
-            },
-                {
-                    where: { id: req.params.id }
-                });
-                res.json(result);
-        }
-        catch (err) {
-            console.log(err);
-            next(err);
-        }
-    })
-    .delete((req, res, next) => {
-
-    })
-
 
 router.get('/:id/comments', async (req, res, next) => {
     try {
