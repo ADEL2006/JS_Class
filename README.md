@@ -1,4 +1,4 @@
 # JS_Class
 
-node.JS + HTML practice. 
-node.JS + HTML midTest (OMG)
+NODE.JS + HTML practice. 
+NODE.JS + HTML midTest (OMG)
