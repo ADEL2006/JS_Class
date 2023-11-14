@@ -26,3 +26,6 @@ app.use(session({
         secure: false
     }
 }));
+app.use((req, res, next) => {
+    const error = new Error();
+})
