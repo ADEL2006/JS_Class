@@ -2,14 +2,17 @@ const express = require('express');
 const nunjucks = require('nunjucks');
 const dotenv = require('dotenv');
 const path = require('path');
+const morgan = require('morgan');
+const cookieParser = require('cookie-parser');
+const session = require('express-session');
 const { request } = require('http');
 
 dotenv.config();
-
+const pageRouter = require('./routes/page');
 const app = express();
 app.set('port', process.env.PORT || 8001);
 app.set('view engine', 'html');
-nunjucks.config('views', {
+nunjucks.configure('views', {
     express: app,
     watch: true,
 });
@@ -27,6 +30,7 @@ app.use(session({
         secure: false
     }
 }));
+app.use('/', pageRouter);
 app.use((req, res, next) => {
     const error = new Error(`${req.method} ${req.url} 라우터가 없습니다`);
     error.status = 404;
