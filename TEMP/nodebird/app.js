@@ -1,5 +1,5 @@
 const express = require('express');
-const nunjcucks = require('nunjcucks');
+const nunjucks = require('nunjucks');
 const dotenv = require('dotenv');
 const path = require('path');
 const { request } = require('http');
@@ -9,7 +9,7 @@ dotenv.config();
 const app = express();
 app.set('port', process.env.PORT || 8001);
 app.set('view engine', 'html');
-nunjcucks.config('views', {
+nunjucks.config('views', {
     express: app,
     watch: true,
 });
@@ -33,6 +33,7 @@ app.use((req, res, next) => {
     next(error);
 })
 app.use((err, req, res, next) => {
+
     res.locals.message = err.message;
     res.locals.error = process.env.NODE_ENV !== 'production' ? err : {};
     res.status(err.status || 500);
