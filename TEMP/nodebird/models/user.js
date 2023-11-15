@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize');
 class User extends Sequelize.Model {
     static initiate(sequelize) {
-        User.initiate({
+        User.init({
             email: {
                 type: Sequelize.STRING(40),
                 allowNull:true,
@@ -36,6 +36,17 @@ class User extends Sequelize.Model {
         })
     }
     static associated(db) {
-
+        db.User.hasMany(db.Post);
+        db.User.belongsToMany(db.User, {
+            foreignKey: 'followingId',
+            as: 'Followers',
+            through: 'Follow',
+        });
+        db.User.belongsToMany(db.User, {
+            foreignKey: 'followerId',
+            as: 'Following',
+            through: 'Follow',
+        });
     }
 }
+module.exports = User;
