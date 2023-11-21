@@ -33,6 +33,10 @@
             {% if not followingIdList.includes(twit.User.id) and twit.User.id !== user.id %}
               <button class="twit-follow">팔로우하기</button>
             {% endif %}
+            {% if twit.User.id === user.id %}
+            <button class="twit-follow">수정하기</button>
+            <button class="twit-follow">삭제하기</button>
+            {% endif %}
             <div class="twit-content">{{twit.content}}</div>
             {% if twit.img %}
               <div class="twit-img"><img src="{{twit.img}}" alt="섬네일"></div>
