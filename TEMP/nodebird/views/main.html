@@ -34,8 +34,8 @@
               <button class="twit-follow">팔로우하기</button>
             {% endif %}
             {% if twit.User.id === user.id %}
-            <button class="twit-follow">수정하기</button>
-            <button class="twit-follow">삭제하기</button>
+            <button class="twit-update">수정</button>
+            <button class="twit-delete">삭제</button>
             {% endif %}
             <div class="twit-content">{{twit.content}}</div>
             {% if twit.img %}
@@ -73,6 +73,27 @@
           if (userId !== myId.value) {
             if (confirm('팔로잉하시겠습니까?')) {
               axios.post(`/user/${userId}/follow`)
+                .then(() => {
+                  location.reload();
+                })
+                .catch((err) => {
+                  console.error(err);
+                });
+            }
+          }
+        }
+      });
+    });
+
+    document.querySelectorAll('.twit-delete').forEach(function(tag) {
+      tag.addEventListener('click', function() {
+        const myId = document.querySelector('#my-id');
+        if (myId) {
+          const userId = tag.parentNode.querySelector('.twit-user-id').value;
+          const bno = tag.parentNode.querySelector('.twit-id').value;
+          if (userId === myId.value) {
+            if (confirm(bno + '번 게시물을 삭제 하시겠습니까?')) {
+              axios.delete(`/post/${bno}`)
                 .then(() => {
                   location.reload();
                 })
