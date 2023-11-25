@@ -31,10 +31,10 @@ exports.uploadPost = async (req, res, next) => {
 };
 
 exports.deletePost = async (req, res, next) => {
-  try{
-    const post = await Post.destroy({where: {id: req.params.id}});
+  try {
+    const post = await Post.destroy({ where: { id: req.params.id } });
     res.send('success');
-  } catch(err) {
+  } catch (err) {
     console.error(err);
     next(err);
   }
