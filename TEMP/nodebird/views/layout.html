@@ -63,18 +63,15 @@
 
     document.querySelectorAll('.nick-update').forEach(function (tag) {
       tag.addEventListener('click', function () {
-        const myId = document.querySelector('#my-id');
-        if (myId) {
-          if (confirm('닉네임을 수정 하시겠습니까?')) {
-            const body = prompt('수정할 닉네임을 입력해 주세요');
-            axios.put(`/user`, { nick: body })
-              .then(() => {
-                location.reload();
-              })
-              .catch((err) => {
-                console.error(err);
-              });
-          }
+        if (confirm('닉네임을 수정 하시겠습니까?')) {
+          const body = prompt('수정할 닉네임을 입력해 주세요');
+          axios.put(`/user`, { nick: body })
+            .then(() => {
+              location.reload();
+            })
+            .catch((err) => {
+              console.error(err);
+            });
         }
       });
     });
