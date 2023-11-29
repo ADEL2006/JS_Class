@@ -42,7 +42,9 @@ exports.deletePost = async (req, res, next) => {
 
 exports.editPost = async (req, res, next) => {
   try {
-    const post = await Post.update({content : req.body.body}, { where: {id: req.params.id}});
+    console.log('editPost');
+    const post = await Post.update({content : req.body.content}, { where: {id: req.params.id}});
+    res.send('success');
   } catch (err) {
     console.error(err);
     next(err);

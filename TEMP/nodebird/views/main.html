@@ -118,7 +118,7 @@
         if (userId === myId.value) {
           if (confirm(bno + '번 게시물을 수정 하시겠습니까?')) {
             const body = prompt('수정할 내용을 입력해 주세요');
-            axios.put(`/post/${bno}`, body)
+            axios.put(`/post/${bno}`, {content:body})
               .then(() => {
                 location.reload();
               })

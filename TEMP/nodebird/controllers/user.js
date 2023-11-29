@@ -29,3 +29,13 @@ exports.unfollow = async (req, res, next) => {
     next(error);
   }
 };
+
+exports.editnick = async (req, res, next) => {
+  try {
+    const post = await User.update({nick : req.body.nick}, { where: {id: req.user.id}});
+    res.send('success');
+  } catch (err) {
+    console.error(err);
+    next(err);
+  }
+};
